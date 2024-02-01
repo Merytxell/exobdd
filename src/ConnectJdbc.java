@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Properties;
+
+import fr.fms.entities.Article;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -30,8 +33,6 @@ public class ConnectJdbc {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-
-		;
 
 
 		try (Connection connection = DriverManager.getConnection(url,login,password)){//etabli la connexion
