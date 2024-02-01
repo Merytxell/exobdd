@@ -99,8 +99,31 @@ public class ArticleDao implements Dao <Article>{
 
 	@Override
 	public ArrayList<Article> readAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ArrayList<Article>articles = new ArrayList<>();
+		
+		String str = "SELECT * FROM T_Articles";
+		
+		try(PreparedStatement ps = connection.prepareStatement(str)){
+			try (ResultSet rs = ps.executeQuery()){
+				while(rs.next()) {
+					int id = rs.getInt("IDArticle");
+					String description = rs.getString("Description");
+					String brand = rs.getString ("Brand");
+					double price = rs.getDouble("UnitaryPrice");
+					
+					Article article = new Article (id,description,brand,price);
+					
+					articles.add(article);
+					
+					
+				}
+			}
+		}catch (SQLException e) {
+			
+		}
+		
+		return articles;
 	}
 
 }
