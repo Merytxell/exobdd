@@ -1,6 +1,7 @@
 package fr.fms.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -78,7 +79,21 @@ public class ArticleDao implements Dao <Article>{
 
 	@Override
 	public boolean delete(Article obj) {
-		// TODO Auto-generated method stub
+		String str = "DELETE FROM T_Articles WHERE IDArticle=?";
+		try (PreparedStatement ps = connection.prepareStatement(str)) {
+			ps.setInt(1, obj.getIDUser()); 
+
+			int rowsAffected = ps.executeUpdate();
+			if (rowsAffected > 0) {
+				System.out.println("Suppression réussie");
+				return true;
+			
+			}else {
+				System.out.println("aucune ligne supprimée");
+			}
+		}catch (SQLException e) {
+			
+	}
 		return false;
 	}
 
