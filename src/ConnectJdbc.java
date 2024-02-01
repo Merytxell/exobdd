@@ -22,6 +22,7 @@ public class ConnectJdbc {
 		String password =prop.getProperty("db.password");
 		String driver = prop.getProperty("db.driver.class");
 		System.out.printf(url,login,password);
+		 
 				
 		ArrayList<Article> articles = new ArrayList();
 		Create(new Article("MacbookPro","Apple", 5000));

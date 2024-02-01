@@ -19,6 +19,9 @@ public class ArticleDao implements Dao <Article>{
 		this.connection = connection;
 
 	}
+	public ArticleDao(String string, String string2, int i) {
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public boolean create(Article obj) {
 		String str = "INSERT INTO T_Articles (Description, Brand, UnitaryPrice, IdCategory) VALUES (?,?,?,?);";
@@ -26,7 +29,7 @@ public class ArticleDao implements Dao <Article>{
 			ps.setString(1,obj.getDescription());
 			ps.setString(2,obj.getBrand());
 			ps.setDouble(3,obj.getPrice());
-			ps.setInt(4,obj.getCategory());
+			//ps.setInt(4,obj.getCategory());
 			return ps.executeUpdate() ==1;
 		}catch (SQLException e) {
 			//Logger.getLogger(ArticleDao.class.getName()).severe("Problème SQL sur la création d'un article" + e.getMessage());
@@ -43,14 +46,14 @@ public class ArticleDao implements Dao <Article>{
 
 			try (ResultSet rs = ps.executeQuery()){///pourquoi ?
 				if (rs.next()) {
-					int rsIDUser = rs.getInt("IdArticle");
+					//int rsIDUser = rs.getInt("IdArticle");
 					String rsDescription = rs.getString("Description");
 					String rsBrand = rs.getString("Brand");
-					String rsPrice = rs.getString("UnitaryPrice");
-					int rsCategory = rs.getInt("IdCategory");
+					double rsPrice = rs.getDouble("UnitaryPrice");
+					//int rsCategory = rs.getInt("IdCategory");
 
 
-					return new Article(rsIDUser, rsDescription, rsBrand, rsPrice, rsCategory);
+					return new Article (rsDescription, rsBrand, rsPrice);
 				}
 
 			}
@@ -103,7 +106,7 @@ public class ArticleDao implements Dao <Article>{
 		ArrayList<Article>articles = new ArrayList<>();
 		
 		String str = "SELECT * FROM T_Articles";
-		
+		//ici deux try with ressources
 		try(PreparedStatement ps = connection.prepareStatement(str)){
 			try (ResultSet rs = ps.executeQuery()){
 				while(rs.next()) {
