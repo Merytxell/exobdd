@@ -81,7 +81,7 @@ public class ArticleDao implements Dao <Article>{
 	public boolean delete(Article obj) {
 		String str = "DELETE FROM T_Articles WHERE IDArticle=?";
 		try (PreparedStatement ps = connection.prepareStatement(str)) {
-			ps.setInt(1, obj.getIdArticle()); 
+			//ps.setInt(1, obj.getIdArticle()); 
 
 			int rowsAffected = ps.executeUpdate();
 			if (rowsAffected > 0) {
@@ -125,8 +125,7 @@ public class ArticleDao implements Dao <Article>{
 
 		return articles;
 	}
-	
-	}
+
 
 
 

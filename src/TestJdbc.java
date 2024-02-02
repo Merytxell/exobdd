@@ -29,8 +29,8 @@ public class TestJdbc {
 			//Article article = new Article ("Galaxy","Samsung",800);
 			ArticleDao articleDao = new ArticleDao();
 			//articleDao.create(article);
-			//Article article = articleDao.read(16);
-			articleDao.delete(1);
+			Article article = articleDao.read(16);
+			//articleDao.delete(1);
 			
 			System.out.println(article);
 			
