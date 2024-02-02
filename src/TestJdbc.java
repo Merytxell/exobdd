@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import fr.fms.dao.ArticleDao;
+import fr.fms.dao.UserDao;
 import fr.fms.entities.Article;
+import fr.fms.entities.User;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,14 +29,20 @@ public class TestJdbc {
 
 	
 			//Article article = new Article ("Galaxy","Samsung",800);
-			ArticleDao articleDao = new ArticleDao();
+			//ArticleDao articleDao = new ArticleDao();
 			//articleDao.create(article);
-			Article article = articleDao.read(16);
+			//Article article = articleDao.read(16);
 			//articleDao.delete(1);
 			
-			System.out.println(article);
+			//System.out.println(article);
 			
 			
+			//test des users 
+			User user = new User (2,"jojo","fms2026");
+			UserDao userDao = new UserDao();
+			userDao.create(user);
+			
+			System.out.println(user);
 			
 			//ArrayList<Article> articles = new ArrayList();
 			//Create(new Article("MacbookPro","Apple", 5000));

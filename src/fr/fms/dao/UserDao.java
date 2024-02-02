@@ -50,7 +50,7 @@ public class UserDao implements Dao<User>{
 
 	@Override
 	public boolean update(User obj) {
-		String str = "UPDATE T_USERS SET Login=?, Password=? WHERE IdUser=?\";";
+		String str = "UPDATE T_Users SET Login=?, Password=? WHERE IdUser=?\";";
 		try (PreparedStatement ps = connection.prepareStatement(str)) {
 			ps.setString(1, obj.getLogin());
 			ps.setString(2, obj.getPassword());
@@ -64,15 +64,51 @@ public class UserDao implements Dao<User>{
 
 	@Override
 	public boolean delete(User obj) {
-		// TODO Auto-generated method stub
+		String str = "DELETE FROM T_Users WHERE IdUser=?";
+		try (PreparedStatement ps = connection.prepareStatement(str)) {
+	
+			int rowsAffected = ps.executeUpdate();
+			if (rowsAffected > 0) {
+				System.out.println("Suppression réussie");
+				return true;
+
+			}else {
+				System.out.println("aucune ligne supprimée");
+			}
+		}catch (SQLException e) {
+
+		}
 		return false;
 	}
+	
+	
 
 	@Override
 	public ArrayList<User> readAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		ArrayList<User>users = new ArrayList<>();
+
+		String str = "SELECT * FROM T_Users";
+		try(PreparedStatement ps = connection.prepareStatement(str)){
+			try (ResultSet rs = ps.executeQuery()){
+				while(rs.next()) {
+					int idUser = rs.getInt("IdUser");
+					String login = rs.getString("Login");
+					String password = rs.getString ("Password");
+				
+
+					User user = new User (idUser,login,password);
+
+					users.add(user);
+
+
+				}
+			}
+		}catch (SQLException e) {
+
+		}
+
+		return users;
 
 	
+	}
 }

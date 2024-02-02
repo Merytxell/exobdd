@@ -79,7 +79,7 @@ public class ArticleDao implements Dao <Article>{
 
 	@Override
 	public boolean delete(Article obj) {
-		String str = "DELETE FROM T_Articles WHERE IDArticle=?";
+		String str = "DELETE FROM T_Articles WHERE IdArticle=?";
 		try (PreparedStatement ps = connection.prepareStatement(str)) {
 			//ps.setInt(1, obj.getIdArticle()); 
 
@@ -126,6 +126,6 @@ public class ArticleDao implements Dao <Article>{
 		return articles;
 	}
 
-
+}
 
 
