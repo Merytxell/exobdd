@@ -1,35 +1,39 @@
 package fr.fms.entities;
+
+import fr.fms.dao.ArticleDao;
+
 public class Article {
 
-	public int IDUser;
+	public int idArticle;
 	public String Description; 
 	public String Brand;
 	public double Price;
-	
-	
+
+
 	public Article (String Description, String Brand, double Price ) {
-	
+
 		this.Description=Description;
 		this.Brand=Brand;
 		this.Price=Price;
-	
-	}
-	public Article (int IDUser,String Description, String Brand, double Price ) {
-		
-		this.IDUser=IDUser;
-		this.Description=Description;
-		this.Brand=Brand;
-		this.Price=Price;
-	
+
 	}
 
-	public int getIDUser() {
-		return IDUser;
+	public Article(int idArticle, String description, String brand, double price) {
+		super();
+		this.idArticle = idArticle;
+		Description = description;
+		Brand = brand;
+		Price = price;
 	}
 
-	public void setUser(int IDuser) {
-		IDUser = IDuser;
+
+	@Override
+	public String toString() {
+		return "Article [idArticle=" + idArticle + ", Description=" + Description + ", Brand=" + Brand + ", Price="
+				+ Price + "]";
 	}
+
+
 
 	public String getDescription() {
 		return Description;
@@ -55,4 +59,14 @@ public class Article {
 		Price = price;
 	}
 
+
+
+
+
 }
+
+
+
+
+
+
